@@ -1,39 +1,40 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
+
   const isHome = pathname === "/";
   const isQuizList = pathname === "/quiz";
+  const showBackButton = !isHome && !isQuizList;
 
   return (
-    <header className="app-header">
+    <header className="app-header" role="banner">
       <div className="app-header__inner">
-        <Link href="/" className="app-brand" aria-label="Accueil">
+        {/* Brand */}
+        <Link
+          href="/"
+          className="app-brand"
+          aria-label="Retour à l’accueil"
+        >
           <span className="app-brand__text">
             <span className="app-brand__title">Quiz App</span>
-            
           </span>
         </Link>
 
-        <nav className="app-nav">
+        {/* Navigation */}
+        <nav className="app-nav" aria-label="Navigation principale">
           <Link
             href="/quiz"
             className={`nav-pill ${isQuizList ? "is-active" : ""}`}
+            aria-current={isQuizList ? "page" : undefined}
           >
             Espace quiz
           </Link>
 
-          {!isHome && !isQuizList && (
-            <button
-              type="button"
-              className="nav-link"
-              onClick={() => window.history.back()}
-            >
-            </button>
-          )}
         </nav>
       </div>
     </header>

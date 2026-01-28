@@ -48,7 +48,7 @@ export async function POST() {
  */
 export async function PUT(request, { params }) {
   try {
-    const { quizId } = params;
+    const { quizId } = await params;
 
     if (!quizId) {
       return NextResponse.json({ error: "Invalid quizId" }, { status: 400 });
@@ -86,7 +86,7 @@ export async function PUT(request, { params }) {
  */
 export async function DELETE(_request, { params }) {
   try {
-    const { quizId } = params;
+    const { quizId } = await params;
 
     if (!quizId) {
       return NextResponse.json({ error: "Invalid quizId" }, { status: 400 });

@@ -40,7 +40,7 @@ export async function GET(_request, { params }) {
  */
 export async function POST(request, { params }) {
   try {
-    const { quizId } = params;
+    const { quizId } = await params;
 
     if (!quizId) {
       return NextResponse.json({ error: "Invalid quizId" }, { status: 400 });
@@ -74,7 +74,7 @@ export async function POST(request, { params }) {
  */
 export async function PUT(request, { params }) {
   try {
-    const { quizId } = params;
+    const { quizId } = await params;
 
     if (!quizId) {
       return NextResponse.json({ error: "Invalid quizId" }, { status: 400 });
@@ -113,7 +113,7 @@ export async function PUT(request, { params }) {
  */
 export async function DELETE(request, { params }) {
   try {
-    const { quizId } = params;
+    const { quizId } = await params;
 
     if (!quizId) {
       return NextResponse.json({ error: "Invalid quizId" }, { status: 400 });
